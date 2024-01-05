@@ -163,3 +163,5 @@ cython_debug/
 *.cfg
 
 firebaseConfig.json
+
+.DS_Store
