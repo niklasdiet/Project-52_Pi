@@ -15,14 +15,18 @@ def get_weather(api_key, lat, lon, exclude='minutely,hourly', units='metric'):
 
         # Extracting relevant information from the response
         current_weather = data['current']
-        sunrise_timestamp = current_weather['sunrise']
-        sunset_timestamp = current_weather['sunset']
        
         # Calculate the duration of daylight (for PV efficiency)
-        daylight_duration = sunset_timestamp - sunrise_timestamp
-        daylight_minutes = daylight_duration / 60
+        daylight_minutes = (current_weather['sunset'] - current_weather['sunrise']) / 60
 
-        data = {"timestamp": datetime.now().timestamp(), "temperature_outside": current_weather['temp'], "air_humidity_outside": current_weather['humidity'], "air_pressure_air_outside": current_weather['pressure'], "daylight_minutes_outside": daylight_minutes, "weather": current_weather['weather'][0]['main'], "weather_icon": current_weather['weather'][0]['icon']}
+        data = {"timestamp": datetime.now().timestamp(),
+                "temperature_outside": current_weather['temp'],
+                "air_humidity_outside": current_weather['humidity'],
+                "air_pressure_air_outside": current_weather['pressure'],
+                "daylight_minutes_outside": daylight_minutes,
+                "weather": current_weather['weather'][0]['main'],
+                "weather_icon": current_weather['weather'][0]['icon'],
+                }
         return data
 
     except Exception as e:

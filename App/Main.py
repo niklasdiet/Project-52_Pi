@@ -1,7 +1,7 @@
-from FirebaseFunctions import *
-from WeatherAPI import *
-from MyEnergyAPI import *
-from IndoorData import *
+from App.FirebaseFunctions import *
+from App.WeatherAPI import *
+from App.MyEnergyAPI import *
+from App.IndoorData import *
 import configparser
 import threading
 import time
