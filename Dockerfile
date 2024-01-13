@@ -1,4 +1,4 @@
-FROM arm32v7/python:3.9
+FROM python:3.9
 
 # Continue with the rest of your Dockerfile
 COPY requirements.txt /app/requirements.txt
