@@ -1,13 +1,11 @@
-FROM arm64v8/python:3.9-slim
+FROM python:3.9
 
 # Continue with the rest of your Dockerfile
 COPY requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install firebase_admin
-
-#RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . /app
 
