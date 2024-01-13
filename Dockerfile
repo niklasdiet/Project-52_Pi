@@ -5,7 +5,9 @@ COPY requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip install firebase_admin
+
+#RUN pip install -r requirements.txt
 
 COPY . /app
 
