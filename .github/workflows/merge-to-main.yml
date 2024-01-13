@@ -1,0 +1,25 @@
+name: Testing Workflow
+
+on:
+  push:
+    branches:
+      - testing
+
+jobs:
+  merge-to-development:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          # Your testing commands here
+
+      - name: Merge to development
+        run: |
+          # Assuming you are on the testing branch
+          git checkout development
+          git merge testing --no-ff  # --no-ff creates a merge commit even for fast-forward merges
+          git push origin development
