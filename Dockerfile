@@ -1,10 +1,5 @@
 FROM python:3.9
 
-
-RUN apt-get update && \
-	apt-get install python-pip libatlas3-base -y && \
-	pip install -U pip
-
 # Continue with the rest of your Dockerfile
 COPY requirements.txt /app/requirements.txt
 
