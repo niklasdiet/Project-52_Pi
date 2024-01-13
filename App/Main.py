@@ -1,7 +1,7 @@
-from App.FirebaseFunctions import *
-from App.WeatherAPI import *
-from App.MyEnergyAPI import *
-from App.IndoorData import *
+from FirebaseFunctions import *
+from WeatherAPI import *
+from MyEnergyAPI import *
+from IndoorData import *
 import configparser
 import threading
 import time
@@ -32,6 +32,7 @@ def timer_thread():
 
 
 if __name__ == "__main__":
+    print("Starting App...")
     # get keys and firebase access
     config = configparser.ConfigParser()
     config.read('Keys.cfg')
