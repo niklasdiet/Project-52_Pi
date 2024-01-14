@@ -16,11 +16,8 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Configure Buildx
-        run: docker buildx create --driver=docker-container --name=multi --use
-
       - name: Build Docker image
-        run: docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest --progress plain --platform linux/amd64,linux/arm64 .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest
