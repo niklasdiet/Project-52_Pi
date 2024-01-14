@@ -4,6 +4,12 @@ FROM python:3.9
 # Update pip and setuptools
 RUN pip install --upgrade pip setuptools
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libffi-dev
+
+RUN pip install --upgrade pip
+
 # Set the working directory in the container
 WORKDIR /app
 
