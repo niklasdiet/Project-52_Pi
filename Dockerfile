@@ -1,4 +1,3 @@
-# Use the official Python 3.9 image for ARM64 (M1)
 FROM python:3.9
 
 # Update pip and setuptools
