@@ -20,7 +20,7 @@ jobs:
         run: docker buildx create --driver=docker-container --name=multi --use
 
       - name: Build Docker image
-        run: docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest --progress plain --platform linux/amd64,linux/arm/v7,linux/arm64 .
+        run: docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest --progress plain --platform linux/amd64,linux/arm64 .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/project-52_pi:latest
