@@ -6,10 +6,10 @@ def connectToDB(username, password):
     return client
 
 
-def uploadData(client, collection_name, d1, d2 = {}, d3 = {}):
+def uploadData(dbName, client, collection_name, d1, d2 = {}, d3 = {}):
     data = d1 | d2 | d3
     
-    db = client['cluster0']
+    db = client[dbName]
     print(f"Files to upload:\n{data}")
 
     # Get the reference to the collection and upload the data
