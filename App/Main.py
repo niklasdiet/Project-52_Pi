@@ -1,4 +1,4 @@
-from FirebaseFunctions import *
+from MongoDBFunctions import *
 from WeatherAPI import *
 from MyEnergyAPI import *
 from IndoorData import *
@@ -8,7 +8,7 @@ import time
 
 MAX_THREADS = 4
 
-def getInfoEverySecondMinute():
+def getInfoEverySecondMinute(client):
     # get energy status from my energy hub
     #get_energy_status(cfgP['serial_number'], cfgP['key_myEnergy'])
 
@@ -18,15 +18,15 @@ def getInfoEverySecondMinute():
     # get indoor data from pods and the room
     greenhouse_dict = getIndoorData()
 
-    # upload data to firebase
-    uploadData("analyticsData", weather_dict, greenhouse_dict)
+    # upload data to mongodb
+    uploadData(client, "analyticsData", weather_dict, greenhouse_dict)
 
 
-def timer_thread():
+def timer_thread(client):
     thread_number = 1
     while True:
         if threading.active_count() - 1 < MAX_THREADS:  # Subtract 1 to exclude the timer thread
-            threading.Thread(target=getInfoEverySecondMinute).start()
+            threading.Thread(target=getInfoEverySecondMinute, args=(client)).start()
             thread_number += 1
         time.sleep(120)
 
@@ -37,8 +37,9 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('Keys.cfg')
     cfgW = config['WEATHER']
+    cfgM = config['MONGODB']
     cfgP = config['PV']
-    initializeApp()
+    client = connectToDB(cfgM['username'], cfgM['password'])
 
-    threading.Thread(target=timer_thread).start()
+    threading.Thread(target=timer_thread, args=(client)).start()
     

@@ -1,8 +1,5 @@
 FROM python:3.9
 
-# Update pip and setuptools
-RUN pip install --upgrade pip setuptools
-
 # Set the working directory in the container
 WORKDIR /app
 
