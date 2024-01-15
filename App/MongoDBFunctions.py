@@ -1,14 +1,11 @@
 from pymongo import MongoClient
 
-def connectToDB(username, password):
-    connection_string = f"mongodb+srv://{username}:{password}@cluster0.qgruyjo.mongodb.net/?retryWrites=true&w=majority"
-    client = MongoClient(connection_string)
-    return client
 
-
-def uploadData(dbName, client, collection_name, d1, d2 = {}, d3 = {}):
+def uploadData(username, password, dbName, collection_name, d1, d2 = {}, d3 = {}):
     data = d1 | d2 | d3
     
+    connection_string = f"mongodb+srv://{username}:{password}@cluster0.qgruyjo.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(connection_string)
     db = client[dbName]
     print(f"Files to upload:\n{data}")
 
