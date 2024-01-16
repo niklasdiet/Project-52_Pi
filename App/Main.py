@@ -37,6 +37,7 @@ if __name__ == "__main__":
     # get keys and firebase access
     config = configparser.ConfigParser()
     config.read('Keys.cfg')
+    print(config.sections())
     cfgW = config['WEATHER']
     cfgM = config['MONGODB']
     cfgP = config['PV']
