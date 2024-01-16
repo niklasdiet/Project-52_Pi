@@ -3,7 +3,7 @@ name: CI-Main
 on:
   push:
     branches:
-      - main
+      - testing
 
 jobs:
   run-main:
@@ -22,5 +22,4 @@ jobs:
           # Perform any manual steps or adjustments if needed
           git add .
           git commit -m "Manual commit to main"
-          git push origin main
           git push origin main
