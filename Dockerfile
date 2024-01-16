@@ -12,6 +12,9 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Copy the Keys.cfg file into the container at /app
+COPY Keys.cfg /app/
+
 RUN uname -m
 
 # Run the image as a non-root user
