@@ -5,7 +5,6 @@ from IndoorData import *
 import configparser
 import threading
 import time
-import os
 
 MAX_THREADS = 4
 
@@ -37,7 +36,7 @@ if __name__ == "__main__":
     print("Starting App...")
     # get keys and firebase access
     config = configparser.ConfigParser()
-    config.read(os.path.join(os.path.dirname(__file__), 'Keys.cfg'))
+    config.read('Keys.cfg')
     print(config.sections())
     cfgW = config['WEATHER']
     cfgM = config['MONGODB']
