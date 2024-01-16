@@ -1,8 +1,9 @@
 from pymongo import MongoClient
 
 
-def uploadData(username, password, dbName, collection_name, d1, d2 = {}, d3 = {}):
-    data = d1 | d2 | d3
+def uploadData(device, username, password, dbName, collection_name, d1, d2 = {}, d3 = {}):
+    d4 = {"device": device}
+    data = d1 | d2 | d3 | d4
     
     connection_string = f"mongodb+srv://{username}:{password}@cluster0.qgruyjo.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(connection_string)

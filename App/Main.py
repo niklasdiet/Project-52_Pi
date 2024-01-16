@@ -8,7 +8,7 @@ import time
 
 MAX_THREADS = 4
 
-def getInfoEverySecondMinute():
+def getInfoEveryFiveMinutes():
     
     # get energy status from my energy hub
     #get_energy_status(cfgP['serial_number'], cfgP['key_myEnergy'])
@@ -20,16 +20,16 @@ def getInfoEverySecondMinute():
     greenhouse_dict = getIndoorData()
 
     # upload data to mongodb
-    uploadData(cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
+    uploadData(cfgR['name'], cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
 
 
 def timer_thread():
     thread_number = 1
     while True:
         if threading.active_count() - 1 < MAX_THREADS:  # Subtract 1 to exclude the timer thread
-            threading.Thread(target=getInfoEverySecondMinute).start()
+            threading.Thread(target=getInfoEveryFiveMinutes).start()
             thread_number += 1
-        time.sleep(120)
+        time.sleep(300)
 
 
 if __name__ == "__main__":
@@ -40,6 +40,7 @@ if __name__ == "__main__":
     cfgW = config['WEATHER']
     cfgM = config['MONGODB']
     cfgP = config['PV']
+    cfgR = config['RASPI']
 
     threading.Thread(target=timer_thread).start()
     
