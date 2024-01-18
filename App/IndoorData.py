@@ -1,4 +1,4 @@
-import board
+from board import SCL, SDA
 from busio import I2C
 import adafruit_bme680
 
@@ -21,10 +21,12 @@ def getIndoorData():
     print("Data: ", dict)
     return dict
 
-def createLibrary():
+def createLibrary(pins = (3, 2)):
     # Create library object using our Bus I2C port
-    i2c = I2C(board.SCL, board.SDA)
+    i2c = I2C(SCL, SDA, frequency=100000, pins=pins)
     bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+
+
     return bme680
 
 # You will usually have to add an offset to account for the temperature of
