@@ -1,3 +1,5 @@
+import bme680
+
 
 def getIndoorData():
     temperature_inside = 0
@@ -11,3 +13,8 @@ def getIndoorData():
     water_level = 0
     dict = {"temperature_inside" : temperature_inside, "ground_humidity": ground_humidity, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     return dict
+
+# get info from sensors of the pi and the BME680 Breakout Board
+def getTemperatureInside():
+    return 0
+    
