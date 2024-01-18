@@ -8,9 +8,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install required packages for Raspberry Pi
-RUN apt-get update && apt-get install -y --no-install-recommends raspi-config
-RUN raspi-config nonint do_i2c 0
-RUN apt-get install -y python3-smbus i2c-tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-smbus i2c-tools
+
+# Enable I2C (you might need to reboot after running this command)
+RUN echo "dtparam=i2c_arm=on" >> /boot/config.txt
 
 # Copy the rest of the application code into the container
 COPY . .
