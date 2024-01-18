@@ -5,9 +5,7 @@ import adafruit_bme680
 
 def getIndoorData():
 
-     # Create library object using our Bus I2C port
-    i2c = I2C(board.SCL, board.SDA)
-    bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+    bme680 = createLibrary()
 
     temperature_inside = getTemperatureInside(bme680)
     ground_humidity = 0
@@ -21,6 +19,12 @@ def getIndoorData():
     altitude = getAltitudeInside(bme680)
     dict = {"altitude": altitude, "temperature_inside": temperature_inside, "ground_humidity": ground_humidity, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     return dict
+
+def createLibrary():
+    # Create library object using our Bus I2C port
+    i2c = I2C(board.SCL, board.SDA)
+    bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+    return bme680
 
 # You will usually have to add an offset to account for the temperature of
 # the sensor. This is usually around 5 degrees but varies by use. Use a
