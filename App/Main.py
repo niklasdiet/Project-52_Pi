@@ -26,6 +26,7 @@ def getInfoEveryFiveMinutes():
 
 
 def timer_thread():
+    print("Starting Threads...")
     thread_number = 1
     while True:
         if threading.active_count() - 1 < MAX_THREADS:  # Subtract 1 to exclude the timer thread
