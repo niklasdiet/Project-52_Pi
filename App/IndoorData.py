@@ -18,7 +18,8 @@ def getIndoorData():
     water = 0
     water_temperature = 0
     water_level = 0
-    dict = {"temperature_inside" : temperature_inside, "ground_humidity": ground_humidity, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
+    altitude = getAltitudeInside(bme680)
+    dict = {"altitude": altitude, "temperature_inside": temperature_inside, "ground_humidity": ground_humidity, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     return dict
 
 # You will usually have to add an offset to account for the temperature of
@@ -34,7 +35,6 @@ def getGroundHumidity(bme680):
 
 def getAirHumidityInside(bme680):
     return bme680.relative_humidity
-
 
 def getAirPressureInside(bme680):
     return bme680.pressure
