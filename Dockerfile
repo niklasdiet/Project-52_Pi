@@ -1,29 +1,30 @@
-# Use an official Python runtime as a parent image
 FROM python:3.9
 
-# Set the working directory to /app
+# Set the working directory in the container
 WORKDIR /app
 
-# Install any needed packages specified in requirements.txt
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+# Install any dependencies specified in requirements.txt
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Add a non-root user (replace "your_username" with your desired username)
-RUN groupadd -r i2c && useradd -r -g i2c -G sudo -m niklasdiet
+# Install required packages for Raspberry Pi
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-smbus i2c-tools
 
-# Change the ownership of the working directory to the non-root user
-RUN chown -R niklasdiet:i2c /app
+# Enable I2C in the Raspberry Pi configuration
+RUN echo "dtparam=i2c1=on" >> /boot/config.txt && \
+    echo "dtparam=i2c_arm=on" >> /boot/config.txt
 
-# Grant read and write permissions to the I2C device
-RUN chmod 666 /dev/i2c-1
+# Load I2C kernel modules
+RUN echo "i2c-dev" >> /etc/modules
 
-# Specify the user to run the container as
-USER niklasdiet
+# Copy the rest of the application code into the container
+COPY . .
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the Keys.cfg file into the container at /app
+COPY Keys.cfg /app/
+
+RUN uname -m
 
 # Run the image as a non-root user
 CMD ["python", "App/Main.py"]
-
-
