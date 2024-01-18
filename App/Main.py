@@ -28,9 +28,15 @@ def timer_thread():
     thread_number = 1
     while True:
         if threading.active_count() - 1 < MAX_THREADS:  # Subtract 1 to exclude the timer thread
-            threading.Thread(target=getInfoEveryFiveMinutes).start()
-            thread_number += 1
-        time.sleep(300)
+            current_time = time.localtime()
+            current_minutes = current_time.tm_min
+
+            # Check if the current minutes is at the end of 5 or 0
+            if current_minutes % 5 == 0:
+                threading.Thread(target=getInfoEveryFiveMinutes).start()
+                thread_number += 1
+
+        time.sleep(15)  # Check every minute
 
 
 if __name__ == "__main__":
