@@ -36,7 +36,7 @@ def timer_thread():
                 threading.Thread(target=getInfoEveryFiveMinutes).start()
                 thread_number += 1
 
-        time.sleep(15)  # Check every minute
+        time.sleep(60)  # Check every minute
 
 
 if __name__ == "__main__":
