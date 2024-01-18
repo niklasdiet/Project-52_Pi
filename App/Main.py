@@ -35,7 +35,7 @@ def timer_thread():
 
 if __name__ == "__main__":
     print("Starting App...")
-    # get keys and firebase access
+    # get keys
     config = configparser.ConfigParser()
     config.read('Keys.cfg')
     cfgW = config['WEATHER']
