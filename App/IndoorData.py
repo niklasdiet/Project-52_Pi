@@ -18,6 +18,7 @@ def getIndoorData():
     water_level = 0
     altitude = getAltitudeInside(bme680)
     dict = {"altitude": altitude, "temperature_inside": temperature_inside, "ground_humidity": ground_humidity, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
+    print("Data: ", dict)
     return dict
 
 def createLibrary():
