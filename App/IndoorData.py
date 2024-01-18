@@ -21,9 +21,9 @@ def getIndoorData():
     print("Data: ", dict)
     return dict
 
-def createLibrary(pins = (3, 2)):
+def createLibrary():
     # Create library object using our Bus I2C port
-    i2c = I2C(SCL, SDA, frequency=100000, pins=pins)
+    i2c = I2C(SCL, SDA, frequency=100000, pins=(3, 2))
     bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
 
 
