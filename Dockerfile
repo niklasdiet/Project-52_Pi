@@ -1,5 +1,7 @@
 FROM python:3.9
 
+RUN groupadd -r i2c && usermod -aG i2c root
+
 # Set the working directory in the container
 WORKDIR /app
 
