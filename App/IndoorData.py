@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 def getIndoorData():
 
-    bme680 = createLibrary()
+    #bme680 = createLibrary()
 
     temperature_inside = 1#getTemperatureInside(bme680)
     moisture = getMoisture(17)
