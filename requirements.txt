@@ -1,4 +1,4 @@
 pymongo
 requests
-
+adafruit-circuitpython-bme680
 RPi.GPIO
