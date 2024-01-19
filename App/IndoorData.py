@@ -6,18 +6,19 @@ import RPi.GPIO as GPIO
 
 def getIndoorData():
 
-    #bme680 = createLibrary()
+    bme680 = createLibrary()
 
-    temperature_inside = 1#getTemperatureInside(bme680)
+    temperature_inside = getTemperatureInside(bme680)
     moisture = getMoisture(17)
     gas = 0
-    air_humidity_inside = 1#getAirHumidityInside(bme680)
-    air_pressure_inside = 1#getAirPressureInside(bme680)
+    air_humidity_inside = getAirHumidityInside(bme680)
+    air_pressure_inside = getAirPressureInside(bme680)
     light = 0
     water = 0
     water_temperature = 0
     water_level = 0
-    altitude = 1#getAltitudeInside(bme680)
+    altitude = getAltitudeInside(bme680)
+    
     dict = {"altitude": altitude, "temperature_inside": temperature_inside, "moisture": moisture, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     print("Data: ", dict)
     return dict
