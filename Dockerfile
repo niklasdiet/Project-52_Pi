@@ -1,5 +1,11 @@
 FROM python:3.9
 
+# Add the user to the i2c group
+RUN usermod -aG i2c project52
+
+# Change permissions on /dev/i2c-1
+RUN chmod a+rw /dev/i2c-1
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -11,12 +17,7 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-smbus i2c-tools
 
-# Enable I2C in the Raspberry Pi configuration
-RUN echo "dtparam=i2c1=on" >> /boot/config.txt && \
-    echo "dtparam=i2c_arm=on" >> /boot/config.txt
 
-# Load I2C kernel modules
-RUN echo "i2c-dev" >> /etc/modules
 
 # Copy the rest of the application code into the container
 COPY . .
