@@ -11,6 +11,9 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-smbus i2c-tools
 
+RUN usermod -aG gpio project52
+RUN usermod -aG i2c project52
+
 # Copy the rest of the application code into the container
 COPY . .
 
