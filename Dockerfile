@@ -9,7 +9,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install required packages for Raspberry Pi
-RUN apt-get update && apt-get install -y --no-install-recommends 
+RUN apt-get update && apt-get install -y --no-install-recommends
+
 # Copy the rest of the application code into the container
 COPY . .
 
