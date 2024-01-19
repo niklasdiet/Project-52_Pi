@@ -7,6 +7,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
+RUN sudo pip install adafruit-circuitpython-bme680
+
 # Install required packages for Raspberry Pi
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-smbus i2c-tools

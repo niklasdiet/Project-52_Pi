@@ -1,5 +1,4 @@
-from board import SCL, SDA
-from busio import I2C
+import board
 import adafruit_bme680
 import RPi.GPIO as GPIO
 
@@ -25,8 +24,8 @@ def getIndoorData():
 
 def createLibrary():
     # Create library object using our Bus I2C port
-    i2c = I2C(SCL, SDA, frequency=100000)
-    bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+    i2c = board.I2C()   # uses board.SCL and board.SDA
+    bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c)
 
     return bme680
 
