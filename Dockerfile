@@ -8,10 +8,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install required packages for Raspberry Pi
-RUN apt-get update && apt-get install -y --no-install-recommends
-
-RUN apk add --no-cache i2c-tools
-RUN chmod 666 /dev/i2c-1
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-smbus i2c-tools
 
 # Copy the rest of the application code into the container
 COPY . .
@@ -20,3 +18,5 @@ RUN uname -m
 
 # Run the image as a non-root user
 CMD ["python", "App/Main.py"]
+
+
