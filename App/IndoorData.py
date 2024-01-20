@@ -24,9 +24,9 @@ def getIndoorData():
     water = 0
     water_temperature = 0
     water_level = 0
-    altitude = getAltitudeInside(bme680)
-    
-    dict = {"altitude": altitude, "temperature_inside": temperature_inside, "moisture": moisture, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
+
+
+    dict = {"temperature_inside": temperature_inside, "moisture": moisture, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     print("Data: ", dict)
     return dict
 
@@ -50,8 +50,6 @@ def getAirHumidityInside(bme680):
 def getAirPressureInside(bme680):
     return bme680.pressure
 
-def getAltitudeInside(bme680):
-    return bme680.altitude
 
 def processMoistureData(data):
     zero_saturation = 0
@@ -61,23 +59,18 @@ def processMoistureData(data):
     return moisture_level
 
 def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
-    try:
-        i2c = busio.I2C(scl_pin, sda_pin)
-        
-        ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
+    i2c = busio.I2C(scl_pin, sda_pin)
+    
+    ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
 
-        # Create an analog input channel on channel 0
-        channel = AnalogIn(ads, ADS.P0)
+    # Create an analog input channel on channel 0
+    channel = AnalogIn(ads, ADS.P0)
 
-        # Read the analog input value
-        raw_data = channel.value
+    # Read the analog input value
+    raw_data = channel.value
 
-        # Perform any necessary processing on the data
-        moisture_level = processMoistureData(raw_data)
-        print(f"Moisture: {moisture_level}%")
+    # Perform any necessary processing on the data
+    moisture_level = processMoistureData(raw_data)
+    print(f"Moisture: {moisture_level}%")
 
-        return moisture_level
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+    return moisture_level
