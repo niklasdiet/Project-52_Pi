@@ -41,7 +41,7 @@ def getBus():
 # the sensor. This is usually around 5 degrees but varies by use. Use a
 # separate temperature sensor to calibrate this one.
 #temperature_offset = -5
-def getTemperatureInside(bme680, temperature_offset = -5):
+def getTemperatureInside(bme680, temperature_offset = -15):
     return bme680.temperature + temperature_offset
 
 def getAirHumidityInside(bme680):
