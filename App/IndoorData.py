@@ -78,6 +78,7 @@ def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
 
         # Perform any necessary processing on the data
         moisture_level = processMoistureData(raw_data)
+        print(f"Moisture: {moisture_level}%")
 
         return moisture_level
 
