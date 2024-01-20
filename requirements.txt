@@ -1,5 +1,5 @@
 pymongo
 requests
 adafruit-circuitpython-bme680
-Adafruit-ADS1x15
+adafruit-circuitpython-ads1x15
 RPi.GPIO
