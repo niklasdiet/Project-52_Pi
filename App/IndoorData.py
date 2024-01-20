@@ -54,7 +54,10 @@ def getAltitudeInside(bme680):
     return bme680.altitude
 
 def processMoistureData(data):
-    moisture_level = data * 100 / 32767
+    zero_saturation = 0
+    full_saturation = 32767
+
+    moisture_level = abs((data-zero_saturation)/(full_saturation-zero_saturation))*100
     return moisture_level
 
 def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
