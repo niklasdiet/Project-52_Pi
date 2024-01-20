@@ -13,18 +13,18 @@ def getIndoorData():
     SENSOR2_SDA_PIN = board.D27
     SENSOR2_SCL_PIN = board.D17
 
-    #bme680 = getBus()
+    bme680 = getBus()
 
-    temperature_inside = 1#getTemperatureInside(bme680)
+    temperature_inside = getTemperatureInside(bme680)
     moisture = getMoisture(SENSOR2_I2C_ADDRESS, SENSOR2_SDA_PIN, SENSOR2_SCL_PIN)
     gas = 0
-    air_humidity_inside = 1#getAirHumidityInside(bme680)
-    air_pressure_inside = 1#getAirPressureInside(bme680)
+    air_humidity_inside = getAirHumidityInside(bme680)
+    air_pressure_inside = getAirPressureInside(bme680)
     light = 0
     water = 0
     water_temperature = 0
     water_level = 0
-    altitude = 1#getAltitudeInside(bme680)
+    altitude = getAltitudeInside(bme680)
     
     dict = {"altitude": altitude, "temperature_inside": temperature_inside, "moisture": moisture, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     print("Data: ", dict)
@@ -62,10 +62,8 @@ def processMoistureData(data):
 
 def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
     try:
-        #i2c = busio.I2C(scl_pin, sda_pin)
-        i2c = board.I2C()   # uses board.SCL and board.SDA
-
-
+        i2c = busio.I2C(scl_pin, sda_pin)
+        
         ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
 
         # Create an analog input channel on channel 0
