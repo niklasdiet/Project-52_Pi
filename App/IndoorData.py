@@ -9,7 +9,7 @@ from adafruit_ads1x15.analog_in import AnalogIn
 def getIndoorData():
 
     SENSOR1_I2C_ADDRESS = 0x48
-    SENSOR1_BUS = (board.D2, board.D3)
+    SENSOR1_BUS = (board.SCL, board.SDA)
 
     SENSOR2_I2C_ADDRESS = 0x49
     SENSOR2_BUS = (board.D17, board.D27)
