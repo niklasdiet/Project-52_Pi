@@ -9,7 +9,7 @@ from adafruit_ads1x15.analog_in import AnalogIn
 def getIndoorData():
 
     SENSOR1_I2C_ADDRESS = 0x77
-    SENSOR1_BUS = (board.SCL, board.SDA)
+    SENSOR1_BUS = (board.D2, board.D3)
 
     SENSOR2_I2C_ADDRESS = 0x48
     SENSOR2_BUS = (board.D17, board.D27)
@@ -20,8 +20,8 @@ def getIndoorData():
     air_pressure_inside = getAirPressureInside(sensor1_ads)
 
 
-    #sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS, "ads1115")
-    moisture = 1#getMoisture(sensor2_ads)
+    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS, "ads1115")
+    moisture = getMoisture(sensor2_ads)
 
     gas = 0
     light = 0
