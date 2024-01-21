@@ -10,8 +10,8 @@ def getIndoorData():
 
     SENSOR1_I2C_ADDRESS = 0x77
     SENSOR2_I2C_ADDRESS = 0x48 
-    SENSOR2_SDA_PIN = board.D27
-    SENSOR2_SCL_PIN = board.D17
+    SENSOR2_SDA_PIN = board.D17
+    SENSOR2_SCL_PIN = board.D27
 
     bme680 = getBus()
 
