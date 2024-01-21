@@ -1,6 +1,7 @@
 import board
 import adafruit_bme680
 import busio
+import smbus
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 #import RPi.GPIO as GPIO
@@ -68,7 +69,7 @@ def getMoisture(ads):
 
 
 def initialize_sensor(sensor_i2c_address, sensor_type, bus):
-    i2c = busio.I2C(board.SCL, board.SDA, frequency=100000, bus=bus)
+    i2c = i2c = smbus.SMBus(bus)#busio.I2C(board.SCL, board.SDA, frequency=100000, bus=bus)
     if sensor_type == "bme680":
         bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, address=sensor_i2c_address)
         return bme680
