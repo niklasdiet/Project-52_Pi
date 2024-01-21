@@ -20,7 +20,7 @@ def getIndoorData():
     air_pressure_inside = getAirPressureInside(sensor1_ads)
 
 
-    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS, "ads1115")
+    sensor2_ads = 1#initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS, "ads1115")
     moisture = getMoisture(sensor2_ads)
 
     gas = 0
