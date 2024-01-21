@@ -3,7 +3,7 @@ import adafruit_bme680
 import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 
 def getIndoorData():
@@ -33,17 +33,6 @@ def getIndoorData():
     print("Data: ", dict)
     return dict
 
-def getBus():
-    # Create library object using our Bus I2C port
-    i2c = board.I2C()   # uses board.SCL and board.SDA
-    bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c)
-    return bme680
-
-def initialize_sensor(sensor_i2c_address, sda_pin=None, scl_pin=None):
-    i2c = busio.I2C(scl_pin, sda_pin)
-    ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
-    ads.gain = 1
-    return ads
 
 # You will usually have to add an offset to account for the temperature of
 # the sensor. This is usually around 5 degrees but varies by use. Use a
