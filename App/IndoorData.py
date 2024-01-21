@@ -9,18 +9,16 @@ from adafruit_ads1x15.analog_in import AnalogIn
 def getIndoorData():
 
     SENSOR1_I2C_ADDRESS = 0x77
-    SENSOR1_BUS = (board.SCL, board.SDA)
 
     SENSOR2_I2C_ADDRESS = 0x48
-    SENSOR2_BUS = (board.SCL, board.SDA)#SCL SDA
-
-    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, SENSOR1_BUS, "bme680", 1)
+    
+    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, "bme680", 1)
     temperature_inside = getTemperatureInside(sensor1_ads)
     air_humidity_inside = getAirHumidityInside(sensor1_ads)
     air_pressure_inside = getAirPressureInside(sensor1_ads)
 
 
-    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS, "ads1115", 3)
+    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, "ads1115", 3)
     moisture = getMoisture(sensor2_ads)
 
     gas = 0
@@ -69,8 +67,8 @@ def getMoisture(ads):
 
 
 
-def initialize_sensor(sensor_i2c_address, i2c_bus, sensor_type, bus):
-    i2c = busio.I2C(*i2c_bus, frequency=100000, bus=bus)
+def initialize_sensor(sensor_i2c_address, sensor_type, bus):
+    i2c = busio.I2C(board.SCL, board.SDA, frequency=100000, bus=bus)
     if sensor_type == "bme680":
         bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, address=sensor_i2c_address)
         return bme680
