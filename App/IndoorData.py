@@ -9,10 +9,10 @@ from adafruit_ads1x15.analog_in import AnalogIn
 def getIndoorData():
 
     SENSOR1_I2C_ADDRESS = 0x77
-    SENSOR1_BUS = (board.SCL, board.SCL)
+    SENSOR1_BUS = (board.SCL, board.SDA)
 
     SENSOR2_I2C_ADDRESS = 0x48
-    SENSOR2_BUS = (board.SCL, board.SCL)
+    SENSOR2_BUS = (board.SCL, board.SDA)
 
     sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, SENSOR1_BUS, "bme680")
     temperature_inside = getTemperatureInside(sensor1_ads)
