@@ -8,23 +8,25 @@ import RPi.GPIO as GPIO
 
 def getIndoorData():
 
-    SENSOR1_I2C_ADDRESS = 0x77
+    #SENSOR1_I2C_ADDRESS = 0x77
     SENSOR2_I2C_ADDRESS = 0x48 
     SENSOR2_SDA_PIN = board.D17
     SENSOR2_SCL_PIN = board.D27
 
     bme680 = getBus()
 
+    sensor_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_SDA_PIN, SENSOR2_SCL_PIN)
+
+    moisture = getMoisture(sensor_ads)
+
     temperature_inside = getTemperatureInside(bme680)
-    moisture = getMoisture(SENSOR2_I2C_ADDRESS, SENSOR2_SDA_PIN, SENSOR2_SCL_PIN)
-    gas = 0
     air_humidity_inside = getAirHumidityInside(bme680)
     air_pressure_inside = getAirPressureInside(bme680)
+    gas = 0
     light = 0
     water = 0
     water_temperature = 0
     water_level = 0
-
 
     dict = {"temperature_inside": temperature_inside, "moisture": moisture, "gas": gas, "air_humidity_inside": air_humidity_inside, "air_pressure_inside": air_pressure_inside, "light": light, "water": water, "water_temperature": water_temperature, "water_level": water_level}
     print("Data: ", dict)
@@ -34,8 +36,13 @@ def getBus():
     # Create library object using our Bus I2C port
     i2c = board.I2C()   # uses board.SCL and board.SDA
     bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c)
-
     return bme680
+
+def initialize_sensor(sensor_i2c_address, sda_pin=None, scl_pin=None):
+    i2c = busio.I2C(scl_pin, sda_pin)
+    ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
+    ads.gain = 1
+    return ads
 
 # You will usually have to add an offset to account for the temperature of
 # the sensor. This is usually around 5 degrees but varies by use. Use a
@@ -58,12 +65,7 @@ def processMoistureData(data):
     moisture_level = abs((data-zero_saturation)/(full_saturation-zero_saturation))*100
     return moisture_level
 
-def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
-    i2c = busio.I2C(scl_pin, sda_pin)
-    
-    ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
-
-    # Create an analog input channel on channel 0
+def getMoisture(ads):
     channel = AnalogIn(ads, ADS.P0)
 
     # Read the analog input value
@@ -74,3 +76,4 @@ def getMoisture(sensor_i2c_address, sda_pin=None, scl_pin=None):
     print(f"Moisture: {moisture_level}%")
 
     return moisture_level
+
