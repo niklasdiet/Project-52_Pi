@@ -8,20 +8,21 @@ import RPi.GPIO as GPIO
 
 def getIndoorData():
 
-    #SENSOR1_I2C_ADDRESS = 0x77
-    SENSOR2_I2C_ADDRESS = 0x48 
-    SENSOR2_SDA_PIN = board.D17
-    SENSOR2_SCL_PIN = board.D27
+    SENSOR1_I2C_ADDRESS = 0x48
+    SENSOR1_BUS = (board.D2, board.D3)
 
-    bme680 = getBus()
+    SENSOR2_I2C_ADDRESS = 0x49
+    SENSOR2_BUS = (board.D17, board.D27)
 
-    sensor_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_SDA_PIN, SENSOR2_SCL_PIN)
+    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, SENSOR1_BUS)
+    temperature_inside = getTemperatureInside(sensor1_ads)
+    air_humidity_inside = getAirHumidityInside(sensor1_ads)
+    air_pressure_inside = getAirPressureInside(sensor1_ads)
 
-    moisture = getMoisture(sensor_ads)
 
-    temperature_inside = getTemperatureInside(bme680)
-    air_humidity_inside = getAirHumidityInside(bme680)
-    air_pressure_inside = getAirPressureInside(bme680)
+    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, SENSOR2_BUS)
+    moisture = getMoisture(sensor2_ads)
+
     gas = 0
     light = 0
     water = 0
@@ -76,4 +77,20 @@ def getMoisture(ads):
     print(f"Moisture: {moisture_level}%")
 
     return moisture_level
+
+
+
+def initialize_sensor(sensor_i2c_address, i2c_bus, sensor_type):
+    i2c = busio.I2C(*i2c_bus)
+    if sensor_type == "bme680":
+        bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, address=sensor_i2c_address)
+        return bme680
+    elif sensor_type == "ads1115":
+        ads = ADS.ADS1115(i2c, address=sensor_i2c_address)
+        ads.gain = 1
+        return ads
+    else:
+        return None
+
+
 
