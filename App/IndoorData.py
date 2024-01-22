@@ -13,7 +13,7 @@ def getIndoorData():
 
     SENSOR2_I2C_ADDRESS = 0x48
     
-    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, "bme680", board.SCL_1, board.SDA_1)
+    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, "bme680", board.SCl, board.SDA)
     temperature_inside = getTemperatureInside(sensor1_ads)
     air_humidity_inside = getAirHumidityInside(sensor1_ads)
     air_pressure_inside = getAirPressureInside(sensor1_ads)
