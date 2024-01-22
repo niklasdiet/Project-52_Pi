@@ -15,13 +15,13 @@ def getIndoorData():
 
     SENSOR2_I2C_ADDRESS = 0x48
     
-    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, "bme680", board.SCL, board.SDA)
+    sensor1_ads = initialize_sensor(SENSOR1_I2C_ADDRESS, "bme680")
     temperature_inside = getTemperatureInside(sensor1_ads)
     air_humidity_inside = getAirHumidityInside(sensor1_ads)
     air_pressure_inside = getAirPressureInside(sensor1_ads)
 
 
-    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, "ads1115", board.SCL_3, board.SDA_3)
+    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, "ads1115")
     moisture = getMoisture(sensor2_ads)
 
     gas = 0
@@ -70,8 +70,8 @@ def getMoisture(ads):
 
 
 
-def initialize_sensor(sensor_i2c_address, sensor_type, scl, sda):
-    i2c = busio.I2C(scl, sda)
+def initialize_sensor(sensor_i2c_address, sensor_type):
+    i2c = busio.I2C(board.SCL, board.SDA)
     device = I2CDevice(i2c, sensor_i2c_address)
     print(device)
     if sensor_type == "bme680":
