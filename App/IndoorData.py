@@ -3,7 +3,6 @@ import adafruit_bme680
 import busio
 import smbus
 from adafruit_bus_device.i2c_device import I2CDevice
-
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 #import RPi.GPIO as GPIO
@@ -21,7 +20,7 @@ def getIndoorData():
     air_pressure_inside = getAirPressureInside(sensor1_ads)
 
 
-    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, "ads1115")
+    sensor2_ads = initialize_sensor(SENSOR2_I2C_ADDRESS, "ads1115",board.SCL_1, board.SDA_1)
     moisture = getMoisture(sensor2_ads)
 
     gas = 0
@@ -70,8 +69,8 @@ def getMoisture(ads):
 
 
 
-def initialize_sensor(sensor_i2c_address, sensor_type):
-    i2c = busio.I2C(board.SCL, board.SDA)
+def initialize_sensor(sensor_i2c_address, sensor_type, scl=board.SCL, sda=board.SDA):
+    i2c = busio.I2C(scl, sda)
     device = I2CDevice(i2c, sensor_i2c_address)
     print(device)
     if sensor_type == "bme680":
