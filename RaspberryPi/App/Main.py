@@ -17,7 +17,7 @@ def getInfoEveryFiveMinutes():
     weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
 
     # get indoor data from pods and the room
-    greenhouse_dict = getIndoorData()
+    greenhouse_dict = {}#getIndoorData()
 
     # upload data to mongodb
     uploadData(cfgR['name'], cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)

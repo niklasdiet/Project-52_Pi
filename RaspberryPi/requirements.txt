@@ -1,6 +1,8 @@
 pymongo
 requests
+pybluez
 smbus
+picamera
 adafruit-blinka
 adafruit-circuitpython-bme680
 adafruit-circuitpython-ads1x15
