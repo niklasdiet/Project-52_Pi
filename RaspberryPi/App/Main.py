@@ -20,7 +20,7 @@ def getInfoEveryFiveMinutes():
     greenhouse_dict = {}#getIndoorData()
 
     # upload data to mongodb
-    uploadData(cfgR['name'], cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
+    uploadData("", cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
 
 
 def timer_thread():
@@ -47,7 +47,6 @@ if __name__ == "__main__":
     cfgW = config['WEATHER']
     cfgM = config['MONGODB']
     cfgP = config['PV']
-    cfgR = config['RASPI']
 
     threading.Thread(target=timer_thread).start()
     
