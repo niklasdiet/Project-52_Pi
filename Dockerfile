@@ -24,7 +24,7 @@ RUN usermod -aG i2c project52
 USER project52
 
 # Copy the rest of the application code into the container
-COPY . .
+COPY /RaspberryPi/App /app
 
 RUN uname -m
 
