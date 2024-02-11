@@ -2,6 +2,7 @@ from MongoDBFunctions import *
 from WeatherAPI import *
 from MyEnergyAPI import *
 from IndoorData import *
+from CameraModule import *
 import configparser
 import threading
 import time
@@ -19,8 +20,11 @@ def getInfoEveryFiveMinutes():
     # get indoor data from pods and the room
     greenhouse_dict = {}#getIndoorData()
 
+    client = connectToDB(cfgM['username'], cfgM['password'])
+    take_picture()
+    upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages")
     # upload data to mongodb
-    uploadData("", cfgM['username'], cfgM['password'], cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
+    uploadData("Pi", client, cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
 
 
 def timer_thread():

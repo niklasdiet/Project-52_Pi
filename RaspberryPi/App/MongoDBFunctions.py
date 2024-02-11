@@ -19,7 +19,7 @@ def round_to_5_minutes(dt):
 
 
 
-def uploadData(device, username, password, dbName, collection_name, d1, d2 = {}, d3 = {}):
+def uploadData(device, client, dbName, collection_name, d1, d2 = {}, d3 = {}):
     # Get the current time
     current_time = datetime.now()
 
@@ -29,7 +29,6 @@ def uploadData(device, username, password, dbName, collection_name, d1, d2 = {},
     d4 = {"device": device, "time": rounded_time}
     data = d1 | d2 | d3 | d4
     
-    client = connectToDB(username, password)
     db = client[dbName]
 
     # Get the reference to the collection and upload the data
@@ -82,7 +81,7 @@ def upload_image_to_mongodb(client, image_path, db_name, collection_name, device
     print(f"Image uploaded to MongoDB with file ID: {file_id}")
     os.remove(image_path)
 
-    return file_id
+    #return file_id
 
 def download_image_from_mongodb(client, file_id, db_name, collection_name, output_path):
     # Connect to the specified database
@@ -100,7 +99,3 @@ def download_image_from_mongodb(client, file_id, db_name, collection_name, outpu
     
     print(f"Image downloaded from MongoDB and saved to: {output_path}")
 
-# Example usage:
-client = connectToDB("dietniklas", "9LBtBSAXz2eqKtcN")
-file_id = upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages")
-download_image_from_mongodb(client, file_id=file_id, db_name="Project52", collection_name="analyticsImages", output_path="App/download/image.png")
