@@ -11,7 +11,6 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-smbus i2c-tools
 RUN sudo apt-get install bluetooth libbluetooth-dev
-RUN sudo apt install -y python3-picamera2 --no-install-recommends
 
 
 

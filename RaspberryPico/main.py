@@ -98,19 +98,23 @@ if __name__ == "__main__":
 
         counter = 0.0
         temp = 0.0
+        tempRaw = 0.0
         pres = 0.0
         hum = 0.0
         gas = 0.0
         moist = 0.0
+        moistRaw = 0.0
         
         while True:
             moisture = convert_to_percentage(soil.read_u16(), wet, dry)
             
             temp += bme.temperature + temp_offset
+            tempRaw += bme.temperature
             pres += bme.pressure
             hum += bme.humidity
             gas += bme.gas
             moist += moisture
+            moistRaw += soil.read_u16()
 
             if counter == 4:
                 # Construct payload in the desired format
@@ -128,12 +132,14 @@ if __name__ == "__main__":
                 # Publish sensor data to MQTT Broker
                 mqtt_client.publish(MQTT_TOPIC, json_payload)
                 
+                counter = 0.0
                 temp = 0.0
+                tempRaw = 0.0
                 pres = 0.0
                 hum = 0.0
                 gas = 0.0
                 moist = 0.0
-                counter = 0.0
+                moistRaw = 0.0
                 
                 led_blinks(1)
             else:
