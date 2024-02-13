@@ -4,8 +4,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+
 
 # Install required packages for Raspberry Pi
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -14,7 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --upgrade pip
 
 RUN apt-get install cmake
+RUN apt-get install python3-numpy
 
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 # Create the gpio group
 RUN groupadd -r gpio
