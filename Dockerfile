@@ -7,15 +7,15 @@ WORKDIR /app
 
 
 # Install required packages for Raspberry Pi
-RUN apt-get update && apt-get install -y --no-install-recommends && \
+RUN apt-get update && \
     apt-get install -y cmake && \
     apt-get install -y python3-numpy && \
-    python3-smbus i2c-tools
+    rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Create the gpio group
 RUN groupadd -r gpio
