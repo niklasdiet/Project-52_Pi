@@ -8,12 +8,11 @@ WORKDIR /app
 
 # Install required packages for Raspberry Pi
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-get install -y cmake && \
+    apt-get install -y python3-numpy && \
     python3-smbus i2c-tools
 
 RUN pip install --upgrade pip
-
-RUN apt-get install cmake
-RUN apt-get install python3-numpy
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
