@@ -10,8 +10,6 @@ RUN pip install -r requirements.txt
 # Install required packages for Raspberry Pi
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-smbus i2c-tools
-RUN sudo apt-get install bluetooth libbluetooth-dev
-
 
 
 # Create the gpio group
