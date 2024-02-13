@@ -6,6 +6,7 @@ from umqtt.simple import MQTTClient
 import ubinascii
 import ujson
 
+led_onboard = Pin("LED", Pin.OUT)
 
 def check_internet_connection():
     wlan = network.WLAN(network.STA_IF)
@@ -15,7 +16,7 @@ def check_internet_connection():
         wlan.active(True)
         wlan.connect(wifi_name, wifi_pw)
 
-        timeout = 10  # Adjust the timeout as needed (in seconds)
+        timeout = 30  # Adjust the timeout as needed (in seconds)
         start_time = time.time()
 
         while not wlan.isconnected() and (time.time() - start_time) < timeout:
@@ -43,7 +44,6 @@ def convert_to_percentage(value, min_value, max_value):
     return percentage
 
 def led_blinks(cycles):
-    led_onboard = Pin("LED", Pin.OUT)
     for _ in range(cycles):
         time.sleep(0.5)
         led_onboard.toggle()  # Turn on the LED
@@ -82,8 +82,9 @@ pico_id = config.get("device_id")
 wifi_name = config.get("wifi_name")
 wifi_pw = config.get("wifi_pw")
 
-if __name__ == "__main__":
 
+
+def main():
     # Check the internet connection
     if check_internet_connection():
         print("Internet connection is active.")
@@ -119,7 +120,7 @@ if __name__ == "__main__":
             if counter == 4:
                 # Construct payload in the desired format
                 sensor_data = {
-                    "device_id": pico_id,
+                     "device_id": pico_id,
                     "temperature": temp/5,
                     "temperature_raw": tempRaw/5,
                     "pressure": pres/5,
@@ -150,3 +151,9 @@ if __name__ == "__main__":
             time.sleep(5)  # Adjust sleep time as needed
     except Exception as e:
         print(f"Failed: {e}")
+        main()
+        
+if __name__ == "__main__":
+    led_onboard.toggle()  # Turn off the LED
+    main()
+

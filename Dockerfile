@@ -20,6 +20,7 @@ RUN groupadd -r gpio
 # Create a non-root user and add it to the gpio and i2c groups
 RUN useradd -r -g gpio -G i2c -m -s /bin/bash project52
 RUN usermod -aG i2c project52
+RUN pip install rpicam-still
 
 # Switch to the non-root user
 USER project52
