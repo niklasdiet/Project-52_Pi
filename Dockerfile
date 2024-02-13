@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --upgrade pip
 
+RUN apt-get install cmake
+
 
 # Create the gpio group
 RUN groupadd -r gpio
