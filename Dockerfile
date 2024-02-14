@@ -8,9 +8,12 @@ WORKDIR /app
 
 # Install required packages for Raspberry Pi
 RUN apt-get update && \
-    apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
+    apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev && \
+    apt-get install build-essential cmake
 
 RUN pip install --upgrade pip
+RUN pip install --upgrade pip setuptools
+
 
 RUN pip install picamera2
 
