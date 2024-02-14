@@ -120,14 +120,15 @@ def main():
             if counter == 4:
                 # Construct payload in the desired format
                 sensor_data = {
-                     "device_id": pico_id,
+                    "device_id": pico_id,
                     "temperature": temp/5,
                     "temperature_raw": tempRaw/5,
                     "pressure": pres/5,
                     "humidity": hum/5,
                     "gas": gas/5,  # Add your gas reading logic here
                     "moisture": moist/5,  # Add your moisture reading logic here
-                    "moisture_raw": moistRaw/5  # Add your moisture reading logic here
+                    "moisture_raw": moistRaw/5,  # Add your moisture reading logic here
+                    "timestamp": time.time()
                 }
                 
                 json_payload = ujson.dumps(sensor_data)
