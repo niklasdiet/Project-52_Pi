@@ -1,5 +1,5 @@
 from time import sleep
-import picamera as picamera
+import picamera2 as picamera
 
 def take_picture():
     camera = picamera.PiCamera()
