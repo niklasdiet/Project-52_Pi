@@ -1,17 +1,10 @@
 from time import sleep
-import cv2
+import picamera2 as picamera
 
 def take_picture():
-    
-    # Open the camera
-    cap = cv2.VideoCapture(0)  # Use 0 for the default camera
-
-    # Capture a single frame
-    ret, frame = cap.read()
-
-    # Save the frame to an image file
-    cv2.imwrite("images/image.jpg", frame)
-
-    # Release the camera
-    cap.release()
-
+    camera = picamera.PiCamera()
+    camera.resolution = (1024, 768)
+    camera.start_preview()
+    sleep(2)
+    camera.capture('images/image.jpg')
+    camera.close()

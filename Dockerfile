@@ -7,8 +7,8 @@ WORKDIR /app
 
 
 # Install required packages for Raspberry Pi
-RUN apt-get update
-
+RUN apt-get update && \
+    apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
 
 RUN pip install --upgrade pip
 
