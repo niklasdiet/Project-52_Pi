@@ -7,12 +7,12 @@ WORKDIR /app
 
 
 # Install required packages for Raspberry Pi
-RUN apt-get update && \
-    apt-get install -y cmake && \
-    apt-get install -y python3-numpy && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+
 
 RUN pip install --upgrade pip
+
+RUN pip install picamera2
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
