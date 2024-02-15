@@ -13,9 +13,10 @@ RUN apt-get update && \
 RUN apt-get install -y build-essential curl
 
 # Install CMake from source
-RUN curl -LO https://cmake.org/files/v3.21/cmake-3.21.3-Linux-x86_64.tar.gz && \
-    tar -zxvf cmake-3.21.3-Linux-x86_64.tar.gz --strip-components=1 -C /usr && \
-    rm cmake-3.21.3-Linux-x86_64.tar.gz
+# Install CMake from source
+ADD https://cmake.org/files/v3.21/cmake-3.21.3-Linux-x86_64.tar.gz /usr/
+RUN tar -zxvf /usr/cmake-3.21.3-Linux-x86_64.tar.gz --strip-components=1 -C /usr && \
+    rm /usr/cmake-3.21.3-Linux-x86_64.tar.gz
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
