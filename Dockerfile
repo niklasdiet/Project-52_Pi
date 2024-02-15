@@ -16,8 +16,7 @@ RUN apt-get update && \
     apt-get install -y libswscale-dev && \
     apt-get install -y libswresample-dev && \
     apt-get install -y libcap-dev && \
-    apt-get install -y build cmake && \
-    apt-get install --only-upgrade cmake
+    apt-get install -y build cmake
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade pip setuptools
