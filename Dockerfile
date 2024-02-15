@@ -4,23 +4,21 @@ FROM python:3.9
 WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
-
-
-# Install required packages for Raspberry Pi
 RUN apt-get update && \
-    apt-get install -y libavformat-dev && \
-    apt-get install -y libavcodec-dev && \
-    apt-get install -y libavdevice-dev && \
-    apt-get install -y libavutil-dev && \
-    apt-get install -y libavfilter-dev && \
-    apt-get install -y libswscale-dev && \
-    apt-get install -y libswresample-dev && \
-    apt-get install -y libcap-dev
+    apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
+    libavutil-dev libavfilter-dev libswscale-dev libswresample-dev libcap-dev
 
-RUN apt-get install -y build-essential cmake
-RUN apt-get install --only-upgrade cmake
+# Install build dependencies
+RUN apt-get install -y build-essential
 
-RUN pip install --upgrade pip
+# Install CMake from source
+RUN wget https://cmake.org/files/v3.21/cmake-3.21.3-Linux-x86_64.tar.gz && \
+    tar -zxvf cmake-3.21.3-Linux-x86_64.tar.gz && \
+    cp -r cmake-3.21.3-Linux-x86_64/* /usr && \
+    rm -rf cmake-3.21.3-Linux-x86_64 && \
+    rm cmake-3.21.3-Linux-x86_64.tar.gz
+
+# Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
 
 COPY requirements.txt .
@@ -34,7 +32,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 #RUN usermod -aG i2c project52
 
 # Switch to the non-root user
-USER project52
+#USER project52
 
 # Copy the rest of the application code into the container
 COPY /RaspberryPi/App /app
