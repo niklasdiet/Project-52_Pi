@@ -21,8 +21,8 @@ def getInfoEveryFiveMinutes():
     greenhouse_dict = {}#getIndoorData()
 
     client = connectToDB(cfgM['username'], cfgM['password'])
-    take_picture()
-    upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages")
+    #take_picture()
+    #upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages")
     # upload data to mongodb
     uploadData("Pi", client, cfgM['database_name'], "analyticsData", weather_dict, greenhouse_dict)
 

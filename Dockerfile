@@ -9,13 +9,6 @@ RUN apt-get update && \
     apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
     libavutil-dev libavfilter-dev libswscale-dev libswresample-dev libcap-dev
 
-# Install build dependencies
-RUN apt-get install -y build-essential curl
-
-# Install CMake from source
-# Install CMake from source
-RUN apt-get install -y cmake
-
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
 
