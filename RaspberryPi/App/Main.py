@@ -1,8 +1,8 @@
 from MongoDBFunctions import *
 from WeatherAPI import *
-from MyEnergyAPI import *
-from IndoorData import *
-from CameraModule import *
+#from MyEnergyAPI import *
+#from IndoorData import *
+#from CameraModule import *
 import configparser
 import threading
 import time
