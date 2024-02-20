@@ -20,7 +20,7 @@ RUN useradd -m -r -s /bin/bash project52
 USER project52
 
 # Copy the rest of the application code into the container
-COPY /RaspberryPi/App /app
+COPY /RaspberryPi /app
 
 # Display system architecture
 RUN uname -m
