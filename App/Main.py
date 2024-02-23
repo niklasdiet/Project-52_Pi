@@ -24,7 +24,7 @@ def getInfoEveryFiveMinutes():
     #take_picture()
     #upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages")
     # upload data to mongodb
-    uploadData("Pi", client, cfgM['database_name'], "sensorData", weather_dict, indoor_dict)
+    uploadData(client, cfgM['database_name'], "sensorData", weather_dict, indoor_dict)
 
 
 def timer_thread():
