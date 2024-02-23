@@ -19,10 +19,10 @@ def get_weather(api_key, lat, lon, exclude='minutely,hourly', units='metric'):
         # Calculate the duration of daylight (for PV efficiency)
         daylight_minutes = (current_weather['sunset'] - current_weather['sunrise']) / 60
 
-        data = {"timestamp": datetime.now().timestamp(),
-                "temperature_outside": current_weather['temp'],
-                "air_humidity_outside": current_weather['humidity'],
-                "air_pressure_air_outside": current_weather['pressure'],
+        data = {"timestamp": int(datetime.now().timestamp()),
+                "temperature": current_weather['temp'],
+                "humidity": current_weather['humidity'],
+                "pressure": current_weather['pressure'],
                 "daylight_minutes_outside": daylight_minutes,
                 "weather": current_weather['weather'][0]['main'],
                 "weather_icon": current_weather['weather'][0]['icon'],

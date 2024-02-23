@@ -128,7 +128,7 @@ def main():
                     "gas": gas/5,  # Add your gas reading logic here
                     "moisture": moist/5,  # Add your moisture reading logic here
                     "moisture_raw": moistRaw/5,  # Add your moisture reading logic here
-                    "timestamp": time.time()
+                    "timestamp": int(time.time() * 1000)
                 }
                 
                 json_payload = ujson.dumps(sensor_data)
