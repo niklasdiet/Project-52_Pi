@@ -13,7 +13,6 @@ def round_to_5_minutes(dt):
     return dt
 
 
-
 def uploadData(client, dbName, collection_name, d1, d2 = {}, d3 = {}):
     # Get the current time
     current_time = datetime.now()
@@ -65,7 +64,7 @@ def upload_image_to_mongodb(client, image_path, db_name, collection_name, device
         # Create a document with additional metadata
         metadata = {
             'timestamp': rounded_time,
-            'device_info': device_info
+            'device_id': device_info
         }
         
         # Store the image and metadata in GridFS

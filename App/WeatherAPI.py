@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime
+import time
 
 def get_weather(api_key, lat, lon, exclude='minutely,hourly', units='metric'):
     
@@ -19,7 +19,7 @@ def get_weather(api_key, lat, lon, exclude='minutely,hourly', units='metric'):
         # Calculate the duration of daylight (for PV efficiency)
         daylight_minutes = (current_weather['sunset'] - current_weather['sunrise']) / 60
 
-        data = {"timestamp": int(datetime.now().timestamp()),
+        data = {"timestamp": int(time.time() * 1000),
                 "temperature": current_weather['temp'],
                 "humidity": current_weather['humidity'],
                 "pressure": current_weather['pressure'],

@@ -5,6 +5,8 @@ from bme680 import *
 from umqtt.simple import MQTTClient
 import ubinascii
 import ujson
+import random
+
 
 led_onboard = Pin("LED", Pin.OUT)
 
