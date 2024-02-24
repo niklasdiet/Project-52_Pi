@@ -6,8 +6,8 @@ WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
 RUN apt-get update && \
-    apt-get install -y libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev libqtgui4 libqt4-test
-
+    apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
+    libavutil-dev libavfilter-dev libswscale-dev libswresample-dev libcap-dev
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
