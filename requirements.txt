@@ -1,3 +1,4 @@
 pymongo
 requests
-picamera
+picamera==1.13
+
