@@ -1,5 +1,5 @@
 # Use a minimal base image
-FROM python:3.9
+FROM balenalib/raspberry-pi-python:3.9-buster
 
 # Set the working directory in the container
 WORKDIR /app
