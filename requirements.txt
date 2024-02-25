@@ -1,3 +1,3 @@
 pymongo
 requests
-picamera
+opencv-python-headless
