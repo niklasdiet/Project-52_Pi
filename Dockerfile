@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
 RUN apt-get update && \
+    apt-get install -y build-essential && \
     apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
     libavutil-dev libavfilter-dev libswscale-dev \
     libswresample-dev libcap-dev
