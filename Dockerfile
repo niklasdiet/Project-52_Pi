@@ -11,15 +11,16 @@ RUN apt-get update && \
     libavutil-dev libavfilter-dev libswscale-dev \
     libswresample-dev libcap-dev
 
-RUN apt add --no-cache \
-    build-base \
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
     python3-dev \
     musl-dev \
     libffi-dev \
-    openssl-dev \
+    libssl-dev \
     gcc \
     libc-dev \
-    linux-headers
+    linux-headers-$(uname -r)
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
