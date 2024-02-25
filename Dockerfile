@@ -11,6 +11,16 @@ RUN apt-get update && \
     libavutil-dev libavfilter-dev libswscale-dev \
     libswresample-dev libcap-dev
 
+RUN apk add --no-cache \
+    build-base \
+    python3-dev \
+    musl-dev \
+    libffi-dev \
+    openssl-dev \
+    gcc \
+    libc-dev \
+    linux-headers
+
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
 
