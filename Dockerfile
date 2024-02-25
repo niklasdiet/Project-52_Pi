@@ -12,6 +12,8 @@ RUN apt-get update && \
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
 
+RUN apt-get install -y python3-numpy
+
 # Install OpenCV headless version
 RUN pip install opencv-python-headless
 
