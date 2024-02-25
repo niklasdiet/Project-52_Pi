@@ -13,7 +13,7 @@ def round_to_5_minutes(dt):
     return dt
 
 
-def uploadData(client, dbName, collection_name, d1, d2 = {}, d3 = {}):
+def uploadData(client, dbName, collection_name, d1):
     # Get the current time
     current_time = datetime.now()
 
@@ -21,13 +21,13 @@ def uploadData(client, dbName, collection_name, d1, d2 = {}, d3 = {}):
     rounded_time = round_to_5_minutes(current_time)
 
     d4 = {"device_id": "hub0001","time": rounded_time}
-    data = d1 | d2 | d3 | d4
+    d1.update(d4)
     
     db = client[dbName]
 
     # Get the reference to the collection and upload the data
     collection_ref = db[collection_name]
-    id = collection_ref.insert_one(data)
+    id = collection_ref.insert_one(d1)
     print(f"Data uploaded with id: {id}")
     return id
 

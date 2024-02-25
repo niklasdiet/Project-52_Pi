@@ -17,14 +17,12 @@ def getInfoEveryFiveMinutes():
     # get weather data for better overall data
     weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
 
-    # get indoor data from pods and the room
-    indoor_dict = {}#getIndoorData()
 
     client = connectToDB(cfgM['username'], cfgM['password'])
     take_picture()
     upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages", "hub0001")
     # upload data to mongodb
-    uploadData(client, cfgM['database_name'], "sensorData", weather_dict, indoor_dict)
+    uploadData(client, cfgM['database_name'], "sensorData", weather_dict)
 
 
 def timer_thread():
