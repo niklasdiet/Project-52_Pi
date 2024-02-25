@@ -1,3 +1,4 @@
 pymongo
 requests
+numpy==1.19.3
 opencv-python-headless
