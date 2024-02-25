@@ -11,7 +11,7 @@ RUN apt-get update && \
     libavutil-dev libavfilter-dev libswscale-dev \
     libswresample-dev libcap-dev
 
-RUN apk add --no-cache \
+RUN apt add --no-cache \
     build-base \
     python3-dev \
     musl-dev \
