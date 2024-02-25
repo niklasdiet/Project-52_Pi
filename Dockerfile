@@ -19,8 +19,7 @@ RUN apt-get update && \
     libffi-dev \
     libssl-dev \
     gcc \
-    libc-dev \
-    linux-headers-$(uname -r)
+    libc-dev
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
