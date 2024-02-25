@@ -6,23 +6,14 @@ WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
 RUN apt-get update && \
-    apt-get install -y build-essential && \
     apt-get install -y libavformat-dev libavcodec-dev libavdevice-dev \
-    libavutil-dev libavfilter-dev libswscale-dev \
-    libswresample-dev libcap-dev
-
-RUN apt-get update && \
-    apt-get install -y \
-    build-essential \
-    python3-dev \
-    musl-dev \
-    libffi-dev \
-    libssl-dev \
-    gcc \
-    libc-dev
+    libavutil-dev libavfilter-dev libswscale-dev libswresample-dev libcap-dev
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
+
+# Install OpenCV headless version
+RUN pip install opencv-python-headless
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
