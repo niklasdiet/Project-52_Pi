@@ -1,7 +1,6 @@
 from MongoDBFunctions import *
 from WeatherAPI import *
-#from MyEnergyAPI import *
-#from IndoorData import *
+
 import configparser
 import threading
 import time
@@ -15,7 +14,6 @@ def getInfoEveryFiveMinutes():
 
     # get weather data for better overall data
     weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
-
 
     client = connectToDB(cfgM['username'], cfgM['password'])
     upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages", "hub0001")
