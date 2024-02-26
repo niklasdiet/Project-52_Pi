@@ -1,5 +1,5 @@
 # Use a minimal base image
-FROM arm32v7/python:3.7-buster
+FROM balenalib/raspberry-pi-python:3.9-buster
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,11 +11,6 @@ RUN apt-get update && \
 
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
-
-RUN apt-get install -y python-numpy
-
-# Install OpenCV headless version
-RUN pip install opencv-python-headless
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
