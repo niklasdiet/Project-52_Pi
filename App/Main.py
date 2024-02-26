@@ -1,6 +1,5 @@
 from MongoDBFunctions import *
 from WeatherAPI import *
-
 import configparser
 import threading
 import time

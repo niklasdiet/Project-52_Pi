@@ -1,4 +1,4 @@
-import os
+'''import os
 import cv2
 
 def take_picture():
@@ -22,3 +22,5 @@ def take_picture():
                 print(f"Image saved at {image_path}")
             else:
                 print("Error: Failed to capture frame.")
+
+                '''
