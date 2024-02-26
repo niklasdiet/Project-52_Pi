@@ -15,7 +15,7 @@ def getInfoEveryFiveMinutes():
     weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
 
     client = connectToDB(cfgM['username'], cfgM['password'])
-    upload_image_to_mongodb(client, "App/images/image.png", "Project52", "analyticsImages", "hub0001")
+
     # upload data to mongodb
     uploadData(client, cfgM['database_name'], "sensorData", weather_dict)
 
