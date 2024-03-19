@@ -1,15 +1,17 @@
 import time
-from grove.gpio import GPIO
-
+import mraa
 def humidify():
+
+
     # Initialize the Grove board
-    gpio = GPIO()
-    gpio.setup(4, GPIO.OUT)
-    gpio.setup(27, GPIO.OUT)
+    gpio4 = mraa.Gpio(4)
+    gpio4.dir(mraa.DIR_OUT)
+    gpio27 = mraa.Gpio(27)
+    gpio27.dir(mraa.DIR_OUT)
 
     # Start the device attached (for example, turning on an LED)
-    gpio.output(4, 1)  # Assuming pin 4 is connected to your device
-    gpio.output(27, 1)  # Assuming pin 27 is connected to your device
+    gpio4.write(1)  # Assuming pin 4 is connected to your device
+    gpio27.write(1)  # Assuming pin 27 is connected to your device
 
     try:
         # Run for 4 seconds
@@ -23,5 +25,5 @@ def humidify():
 
     finally:
         # Clean up GPIO settings
-        gpio.output(4, 0)
-        gpio.output(27, 0)
+        gpio4.write(0)
+        gpio27.write(0)
