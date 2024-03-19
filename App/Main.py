@@ -1,5 +1,6 @@
 from MongoDBFunctions import *
 from WeatherAPI import *
+from Humidifier import *
 import configparser
 import threading
 import time
@@ -12,12 +13,14 @@ def getInfoEveryFiveMinutes():
     #get_energy_status(cfgP['serial_number'], cfgP['key_myEnergy'])
 
     # get weather data for better overall data
-    weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
+    #weather_dict = get_weather(cfgW['api_key'], cfgW['latitude'], cfgW['longitude'])
 
-    client = connectToDB(cfgM['username'], cfgM['password'])
+    #client = connectToDB(cfgM['username'], cfgM['password'])
 
     # upload data to mongodb
-    uploadData(client, cfgM['database_name'], "sensorData", weather_dict)
+    #uploadData(client, cfgM['database_name'], "sensorData", weather_dict)
+    humidify()
+
 
 
 def timer_thread():

@@ -5,8 +5,10 @@ FROM balenalib/raspberry-pi-python:3.9-buster
 WORKDIR /app
 
 # Install any dependencies specified in requirements.txt
-RUN apt-get update && apt-get install -y python3-rpi.gpio
-
+RUN apt-get update \
+    && apt-get install -y python3-rpi.gpio libraspberrypi-bin \
+    && rm -rf /var/lib/apt/lists/*
+    
 # Upgrade pip and setuptools
 RUN pip install --upgrade pip setuptools
 
