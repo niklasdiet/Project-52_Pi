@@ -2,10 +2,7 @@ from MongoDBFunctions import *
 from WeatherAPI import *
 from Humidifier import *
 import configparser
-import threading
-import time
 
-MAX_THREADS = 4
 
 def getInfoEveryFiveMinutes():
     
