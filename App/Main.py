@@ -19,11 +19,7 @@ def getInfoEveryFiveMinutes():
     humidify()
 
 
-
-def timer_thread():
-    print("Starting Threads...")
-    while True:
-        getInfoEveryFiveMinutes()
+    
 
 
 if __name__ == "__main__":
@@ -34,6 +30,7 @@ if __name__ == "__main__":
     cfgW = config['WEATHER']
     cfgM = config['MONGODB']
     cfgP = config['PV']
-
-    threading.Thread(target=timer_thread).start()
+    while True:
+        getInfoEveryFiveMinutes()
+        time.sleep(300)
     
