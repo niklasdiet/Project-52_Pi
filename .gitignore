@@ -163,7 +163,11 @@ cython_debug/
 *.cfg
 firebaseConfig.json
 .DS_Store
-TestOnMyMac/
+TestLocally/
 config.json
 
 dev-to-test.yml
+*.jpg
+
+
+__pycache__/

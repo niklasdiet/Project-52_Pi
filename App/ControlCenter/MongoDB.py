@@ -7,33 +7,29 @@ from gridfs import GridFS
 from bson import ObjectId
 
 
-def round_to_5_minutes(dt):
-    # Round the minutes to the nearest 5
-    rounded_minutes = (dt.minute // 5) * 5
-    # Set seconds to 0
-    dt = dt.replace(minute=rounded_minutes, second=0, microsecond=0)
-    return dt
 
+def uploadData(client, dbName, collection_name, data):
 
-def uploadData(client, dbName, collection_name, d1):
-    # Get the current time
-    current_time = datetime.now()
-
-    # Round to the nearest 5 minutes
-    rounded_time = round_to_5_minutes(current_time)
-
-    d4 = {"device_id": "hub0001","time": rounded_time}
-    d1.update(d4)
-    
     db = client[dbName]
 
     # Get the reference to the collection and upload the data
     collection_ref = db[collection_name]
-    id = collection_ref.insert_one(d1)
+    id = collection_ref.insert_one(data)
     print(f"Data uploaded with id: {id}")
     return id
 
+def updateStock(data, client, collection, db = 'Stock'):
+    try:
+        uploadData(client, db, collection, data)
+    except:
+        print("Error updating stock {culture}")
+        uploadData(client, 'ErrorLogs', 'Logs', {'errorMessage': "Error updating stock {culture}", 'time': datetime.now()})
 
+
+def getData(client, dbName, collection_name):
+    db = client[dbName]
+    collection = db[collection_name]
+    return collection.find({})
 
 def connectToDB(username, password):
     connection_string = f"mongodb+srv://{username}:{password}@cluster0.qgruyjo.mongodb.net/?retryWrites=true&w=majority"
@@ -48,37 +44,6 @@ def connectToDB(username, password):
     except Exception as e:
         print(e)
 
-
-def upload_image_to_mongodb(client, image_path, db_name, collection_name, device_info):
-    current_time = datetime.now()
-
-    # Round to the nearest 5 minutes
-    rounded_time = round_to_5_minutes(current_time)
-
-    # Connect to the specified database
-    db = client[db_name]
-
-    
-    # Initialize GridFS
-    fs = GridFS(db, collection=collection_name)
-    
-    # Open the image file
-    with open(image_path, 'rb') as image_file:
-        # Create a document with additional metadata
-        metadata = {
-            'timestamp': rounded_time,
-            'device_id': device_info
-        }
-        
-        # Store the image and metadata in GridFS
-        file_id = fs.put(image_file, filename=image_path, metadata=metadata)
-    
-
-    
-    print(f"Image uploaded to MongoDB with file ID: {file_id}")
-    os.remove(image_path)
-
-    #return file_id
 
 def download_image_from_mongodb(client, file_id, db_name, file_name):
     IMAGE_SAVE_DIR = "downloadedImages/"

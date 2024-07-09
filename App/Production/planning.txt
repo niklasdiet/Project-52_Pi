@@ -1,0 +1,88 @@
+
+
+
+Modules: 
+- Status:
+- energie consumption:
+- Batterie:
+- Functionalities: []
+- Types: Robot, 3D Print, Storrage, Heat&Cool, 
+
+
+Hub:
+- Server
+- DB
+- Planning
+- Resources:
+    - energie
+    - Water
+    - (Gas)
+    - ...
+- Positions od Modules
+- Modules
+- Converyer System (nosw)
+- size (1200 mm, 800 mm, 144 mm)
+
+
+
+
+
+
+
+
+Task 1:
+- Connect devices and create matirx
+    - start up system(hub)
+    - check energy (locate if a device is connected)
+- Understand which Device has which capabilities
+- Run robot with code
+
+Task 2:
+- In and output (location) of things on belts
+    - define hardware (NFC version)
+    - store data of location
+- Tool change (movement and knowing position of tools)
+    - define hardware (NFC version)
+    - store data of location
+- Storrage
+    - store info and availibility
+
+Task 3:
+- First assembly and robot task (just in theory)
+
+Task 4:
+- CI/CD
+- Unittesting
+- Code optimization
+
+Task 5:
+- Build Hardware (Robot tool connector)
+- Build NFC System
+- Build Robot cage
+
+Task 6:
+- Build smart tools
+- optimize Code for robot
+- add camera vision
+
+Task 7:
+- add LLM
+- build more tools
+- add belt System
+
+Task 8:
+- add storrage unit
+- simulate all devices
+
+Task 9:
+- Fully functioning mushroom growth (mixing, injecting mycilium, storing, desinfecting)
+
+Task 10:
+- Optimze full production
+
+Task 11:
+- Add new tasks like building the own production setup
+
+
+
+
